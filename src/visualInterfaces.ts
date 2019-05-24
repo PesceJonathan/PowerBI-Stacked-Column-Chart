@@ -68,6 +68,8 @@ module powerbi.extensibility.visual {
         rowBy?: PrimitiveValue;         
         preSelected?: boolean;
         preRemoved?: boolean;
+        style1?: number;
+        style2?: string;
     }
 
     export interface Coordinates {

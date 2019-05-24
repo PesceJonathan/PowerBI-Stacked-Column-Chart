@@ -149,7 +149,7 @@ module powerbi.extensibility.visual {
 
             this.interactivityService = createInteractivityService(this.host);
 
-            const customLegendBehavior = new CustomLegendBehavior( this.saveSelection.bind(this) );
+            const customLegendBehavior = new  CustomLegendBehavior( this.saveSelection.bind(this) );
             this.legend = createLegend(
                 this.mainHtmlElement,
                 false,
@@ -341,10 +341,12 @@ module powerbi.extensibility.visual {
         }
 
         public update(options: VisualUpdateOptions) {
+            //debugger;
             if (!this.optionsAreValid(options)) {
                 return;
             }
 
+            //debugger;
             const dataView = options && options.dataViews && options.dataViews[0];
 
             this.dataView = dataView;
