@@ -79,7 +79,6 @@ module powerbi.extensibility.visual {
 
             barSelect
                 .each(function (d) {
-                    debugger;
                     var aggregatedHeight = 0;
                     var height = 0;
                     var heightDiff = 0;
@@ -165,37 +164,31 @@ module powerbi.extensibility.visual {
 
             let interactivityService = visualInteractivityService,
                 hasSelection: boolean = interactivityService.hasSelection();
-
+                
             barSelect.style({
-                "fill-opacity": (p: VisualDataPoint) => visualUtils.getFillOpacity(
+                "fill-opacity": function(p: VisualDataPoint) { 
+                p.style1 = visualUtils.getFillOpacity(
                     p.selected,
                     p.highlight,
                     !p.highlight && hasSelection,
-                    !p.selected && data.hasHighlight),
-                "stroke-opacity": (p: VisualDataPoint) => visualUtils.getFillOpacity(
-                    p.selected,
-                    p.highlight,
-                    !p.highlight && hasSelection,
-                    !p.selected && data.hasHighlight),
+                    !p.selected && data.hasHighlight);
+                    return p.style1;
+                },
+                "stroke-opacity": (p: VisualDataPoint) => p.style1,
                 "stroke": (p: VisualDataPoint) => {
                     if ((hasHighlight || hasSelection) && visualUtils.isSelected(p.selected,
                         p.highlight,
                         !p.highlight && hasSelection,
                         !p.selected && hasHighlight)) {
+                        p.style2 = Visual.DefaultStrokeSelectionColor;
                         return Visual.DefaultStrokeSelectionColor;
                     }
 
+                    p.style2 = p.color;
                     return p.color;
                 },
                 "stroke-width": p => {
-                    if ((hasHighlight || hasSelection) && visualUtils.isSelected(p.selected,
-                        p.highlight,
-                        !p.highlight && hasSelection,
-                        !p.selected && hasHighlight)) {
-                        return Visual.DefaultStrokeSelectionWidth;
-                    }
-
-                    return Visual.DefaultStrokeWidth;
+                    return p.style2;
                 }
             });
 

@@ -52,6 +52,7 @@ module powerbi.extensibility.visual {
             let clearCatcher = options.clearCatcher;
 
             legendItems.on("click", d => {
+                debugger;
                 selectionHandler.handleSelection(d, (d3.event as MouseEvent).ctrlKey);
                 this.saveSelection();
             });

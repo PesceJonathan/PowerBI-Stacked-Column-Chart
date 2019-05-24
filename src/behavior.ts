@@ -63,33 +63,33 @@ module powerbi.extensibility.visual {
             //this.options.interactivityService.applySelectionStateToData(allDatapoints);
             let currentSelection = allDatapoints.filter(d => d.selected);
             
-            this.options.bars.style({
-                "fill-opacity": (p: VisualDataPoint) => visualUtils.getFillOpacity(
-                        p.selected,
-                        p.highlight,
-                        !p.highlight && hasSelection,
-                        !p.selected && hasHighlight),
-                "stroke": (p: VisualDataPoint)  => {
-                    if (hasSelection && visualUtils.isSelected(p.selected,
-                        p.highlight,
-                        !p.highlight && hasSelection,
-                        !p.selected && hasHighlight)) {
-                            return Visual.DefaultStrokeSelectionColor;
-                        }                        
+            // this.options.bars.style({
+            //     "fill-opacity": (p: VisualDataPoint) => visualUtils.getFillOpacity(
+            //             p.selected,
+            //             p.highlight,
+            //             !p.highlight && hasSelection,
+            //             !p.selected && hasHighlight),
+            //     "stroke": (p: VisualDataPoint)  => {
+            //         if (hasSelection && visualUtils.isSelected(p.selected,
+            //             p.highlight,
+            //             !p.highlight && hasSelection,
+            //             !p.selected && hasHighlight)) {
+            //                 return Visual.DefaultStrokeSelectionColor;
+            //             }                        
 
-                    return p.color;
-                },
-                "stroke-width": p => {
-                    if (hasSelection && visualUtils.isSelected(p.selected,
-                        p.highlight,
-                        !p.highlight && hasSelection,
-                        !p.selected && hasHighlight)) {
-                        return Visual.DefaultStrokeSelectionWidth;
-                    }
+            //         return p.color;
+            //     },
+            //     "stroke-width": p => {
+            //         if (hasSelection && visualUtils.isSelected(p.selected,
+            //             p.highlight,
+            //             !p.highlight && hasSelection,
+            //             !p.selected && hasHighlight)) {
+            //             return Visual.DefaultStrokeSelectionWidth;
+            //         }
 
-                    return Visual.DefaultStrokeWidth;
-                }
-            });
+            //         return Visual.DefaultStrokeWidth;
+            //     }
+            // });
         }
     }
 }
